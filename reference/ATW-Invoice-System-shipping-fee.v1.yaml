@@ -1,0 +1,191 @@
+openapi: 3.0.0
+info:
+  title: ATW Invoice System shipping fee
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: integer
+        name: userId
+        in: path
+        required: true
+        description: Id of an existing user.
+    get:
+      summary: Get User Info by User ID
+      tags: []
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Get User Alice Smith:
+                  value:
+                    id: 142
+                    firstName: Alice
+                    lastName: Smith
+                    email: alice.smith@gmail.com
+                    dateOfBirth: '1997-10-31'
+                    emailVerified: true
+                    signUpDate: '2019-08-24'
+        '404':
+          description: User Not Found
+      operationId: get-users-userId
+      description: Retrieve the information of the user with the matching user ID.
+    patch:
+      summary: Update User Information
+      operationId: patch-users-userId
+      responses:
+        '200':
+          description: User Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Updated User Rebecca Baker:
+                  value:
+                    id: 13
+                    firstName: Rebecca
+                    lastName: Baker
+                    email: rebecca@gmail.com
+                    dateOfBirth: '1985-10-02'
+                    emailVerified: false
+                    createDate: '2019-08-24'
+        '404':
+          description: User Not Found
+        '409':
+          description: Email Already Taken
+      description: Update the infromation of an existing user.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                  description: 'If a new email is given, the user''s email verified property will be set to false.'
+                dateOfBirth:
+                  type: string
+            examples:
+              Update First Name:
+                value:
+                  firstName: Rebecca
+              Update Email:
+                value:
+                  email: rebecca@gmail.com
+              Update Last Name & Date of Birth:
+                value:
+                  lastName: Baker
+                  dateOfBirth: '1985-10-02'
+        description: Patch user properties to update.
+  /shippingfee:
+    post:
+      summary: ATW Invoice System shipping fee
+      operationId: post-shippingfee
+      responses:
+        '200':
+          description: Shipping fee Registed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipping-Fee'
+              examples:
+                Shipping Fee:
+                  value:
+                    shipping_id: '1'
+                    order_id: '2'
+                    forward_fee: '100'
+                    shipping_fee: '200'
+                    packing_fee: '300'
+                    item_fee: '400'
+                    attach_fee: '500'
+                    print_fee: '600'
+                    others: '700'
+                    summary: '2800'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              Create Shipping Fee Fellow:
+                value:
+                  shipping_id: '1'
+                  order_id: '2'
+                  forward_fee: '100'
+                  shipping_fee: '200'
+                  packing_fee: '300'
+                  item_fee: '400'
+                  attach_fee: '500'
+                  print_fee: '600'
+                  others: '700'
+                  summary: '2800'
+        description: Post the necessary fields for the API to shipping fee.
+      description: ATW Invoice System shipping fee
+    parameters: []
+components:
+  schemas:
+    Shipping-Fee:
+      title: Shipping-Fee
+      type: object
+      description: ''
+      x-examples:
+        Shipping fee:
+          shipping_id: '2'
+          order_id: '3'
+          forward_fee: '200'
+          shipping_fee: '300'
+          packing_fee: '400'
+          item_fee: '500'
+          attach_fee: '600'
+          print_fee: '700'
+          others: '800'
+          summary: '3500'
+      properties:
+        shipping_id:
+          type: integer
+          description: Unique identifier for the given user.
+        order_id:
+          type: integer
+        forward_fee:
+          type: integer
+        shipping_fee:
+          format: email
+          type: integer
+        packing_fee:
+          format: date
+          type: integer
+        item_fee:
+          description: Set to true if the user's email has been verified.
+          type: integer
+        attach_fee:
+          format: date
+          description: The date that the user was created.
+          type: integer
+        print_fee:
+          type: integer
+        others:
+          type: integer
+        summary:
+          type: integer
+      required:
+        - shipping_id
+        - order_id
+        - forward_fee
+        - shipping_fee
+        - item_fee
