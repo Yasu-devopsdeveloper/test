@@ -5,16 +5,10 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  '/users/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
+  /materials:
+    parameters: []
     get:
-      summary: Get User Info by User ID
+      summary: Get fees of packing material
       tags: []
       responses:
         '200':
@@ -35,8 +29,8 @@ paths:
                     signUpDate: '2019-08-24'
         '404':
           description: User Not Found
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
+      operationId: get-material-fee
+      description: Retrieve the fees of the packing materials.
     patch:
       summary: Update User Information
       operationId: patch-users-userId
