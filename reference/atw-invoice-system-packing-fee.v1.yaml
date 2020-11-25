@@ -13,78 +13,24 @@ paths:
       tags: []
       responses:
         '200':
-          description: User Found
+          description: Materials
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Material'
               examples:
-                Get User Alice Smith:
+                Get materials:
                   value:
-                    id: 142
-                    firstName: Alice
-                    lastName: Smith
-                    email: alice.smith@gmail.com
-                    dateOfBirth: '1997-10-31'
-                    emailVerified: true
-                    signUpDate: '2019-08-24'
-        '404':
-          description: User Not Found
+                    material-A: 100
+                    material-B: 200
+                    material-C: 300
+                    material-D: 400
+                    material-E: 500
+        '400':
+          description: Bad Request
       operationId: get-material-fee
       description: Retrieve the fees of the packing materials.
-    patch:
-      summary: Update User Information
-      operationId: patch-users-userId
-      responses:
-        '200':
-          description: User Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
-        '404':
-          description: User Not Found
-        '409':
-          description: Email Already Taken
-      description: Update the infromation of an existing user.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  description: 'If a new email is given, the user''s email verified property will be set to false.'
-                dateOfBirth:
-                  type: string
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
-        description: Patch user properties to update.
-  /user:
+  /material:
     post:
       summary: Create New User
       operationId: post-user
@@ -94,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Material'
               examples:
                 New User Bob Fellow:
                   value:
@@ -115,33 +61,34 @@ paths:
             schema:
               type: object
               properties:
-                firstName:
+                materialName:
                   type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
+                  description: material name
+                fee:
+                  type: integer
+                  description: fee
               required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
+                - materialName
+                - fee
             examples:
-              Create User Bob Fellow:
+              Create material:
                 value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
+                  materialName: material-F
+                  fee: '600'
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
+  '/material/{materialID}':
+    parameters: []
+    patch:
+      summary: ''
+      operationId: patch-material-materialID
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
-    User:
-      title: User
+    Material:
+      title: Materials
       type: object
       description: ''
       x-examples:
