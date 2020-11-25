@@ -30,10 +30,10 @@ paths:
           description: Bad Request
       operationId: get-material-fee
       description: Retrieve the fees of the packing materials.
-  /material:
+  '/material/{materialName}/{fee}':
     post:
       summary: Create New User
-      operationId: post-user
+      operationId: post-material-fee
       responses:
         '200':
           description: User Created
@@ -42,15 +42,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Material'
               examples:
-                New User Bob Fellow:
+                New Packing material fee Fellow:
                   value:
-                    id: 12
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
+                    materialName: material-F
+                    fee: 600
         '400':
           description: Missing Required Information
         '409':
@@ -74,17 +69,28 @@ paths:
               Create material:
                 value:
                   materialName: material-F
-                  fee: '600'
+                  fee: 600
         description: Post the necessary fields for the API to create a new user.
-      description: Create a new user.
-  '/material/{materialID}':
-    parameters: []
+      description: Create packing material fee.
     patch:
       summary: ''
-      operationId: patch-material-materialID
+      operationId: patch-material
       responses:
         '200':
           description: OK
+    parameters:
+      - schema:
+          type: string
+        name: materialName
+        in: path
+        description: material name
+        required: true
+      - schema:
+          type: integer
+        name: fee
+        in: path
+        required: true
+        description: material fee
 components:
   schemas:
     Material:
@@ -99,24 +105,12 @@ components:
           material-D: 400
           material-E: 500
       properties:
-        material-A:
-          type: integer
+        materialName:
+          type: string
           description: 100 yen
-        material-B:
+        fee:
           type: integer
           description: 200 yen
-        material-C:
-          type: integer
-          description: 300 yen
-        material-D:
-          type: integer
-          description: 400 yen
-        material-E:
-          type: integer
-          description: 500 yen
       required:
-        - material-A
-        - material-B
-        - material-C
-        - material-D
-        - material-E
+        - materialName
+        - fee
