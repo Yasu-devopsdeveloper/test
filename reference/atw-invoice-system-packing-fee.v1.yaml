@@ -21,22 +21,32 @@ paths:
               examples:
                 Get materials:
                   value:
-                    material-A: 100
-                    material-B: 200
-                    material-C: 300
-                    material-D: 400
-                    material-E: 500
+                    - materialID: 1
+                      materialName: material-A
+                      fee: 100
+                    - materialID: 2
+                      materialName: material-B
+                      fee: 200
+                    - materialID: 3
+                      materialName: material-C
+                      fee: 300
+                    - materialID: 4
+                      materialName: material-D
+                      fee: 400
+                    - materialID: 5
+                      materialName: material-E
+                      fee: 500
         '400':
           description: Bad Request
       operationId: get-material-fee
       description: Retrieve the fees of the packing materials.
-  '/material/{materialName}/{fee}':
+  '/material/{materialName}/{fee}/{materialID}':
     post:
       summary: Create New User
       operationId: post-material-fee
       responses:
         '200':
-          description: User Created
+          description: packing material fee Created
           content:
             application/json:
               schema:
@@ -44,25 +54,28 @@ paths:
               examples:
                 New Packing material fee Fellow:
                   value:
+                    materialID: 6
                     materialName: material-F
                     fee: 600
         '400':
           description: Missing Required Information
-        '409':
-          description: Email Already Taken
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
+                materialID:
+                  type: integer
+                  description: material ID
                 materialName:
                   type: string
-                  description: material name
+                  description: material Name
                 fee:
                   type: integer
                   description: fee
               required:
+                - materialID
                 - materialName
                 - fee
             examples:
@@ -77,40 +90,64 @@ paths:
       operationId: patch-material
       responses:
         '200':
-          description: OK
+          description: |-
+            {
+              "materialID": 6,
+              "materialName": "material-F",
+              "fee": 600
+            }
     parameters:
+      - schema:
+          type: integer
+        name: materialID
+        in: path
+        description: material name
+        required: true
       - schema:
           type: string
         name: materialName
         in: path
-        description: material name
         required: true
+        description: material fee
       - schema:
           type: integer
         name: fee
         in: path
         required: true
-        description: material fee
 components:
   schemas:
     Material:
-      title: Materials
+      title: Material
       type: object
-      description: ''
+      description: packing material fee
       x-examples:
         materials:
-          material-A: 100
-          material-B: 200
-          material-C: 300
-          material-D: 400
-          material-E: 500
+          - materialID: 1
+            materialName: material-A
+            fee: 100
+          - materialID: 2
+            materialName: material-B
+            fee: 200
+          - materialID: 3
+            materialName: material-C
+            fee: 300
+          - materialID: 4
+            materialName: material-D
+            fee: 400
+          - materialID: 5
+            materialName: material-E
+            fee: 500
       properties:
+        materialID:
+          type: integer
+          description: '1'
         materialName:
           type: string
-          description: 100 yen
+          description: material-A
         fee:
           type: integer
-          description: 200 yen
+          description: '100'
       required:
+        - materialID
         - materialName
         - fee
