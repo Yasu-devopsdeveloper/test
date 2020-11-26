@@ -31,6 +31,12 @@ paths:
                   - materialID
                   - materialName
                   - fee
+              examples:
+                Get packing material fee.:
+                  value:
+                    materialID: 1
+                    materialName: material-A
+                    fee: 100
         '400':
           description: Bad Request
       description: Retrieve the fees of the packing materials.
@@ -52,6 +58,10 @@ paths:
                     materialID: 6
                     materialName: material-F
                     fee: 600
+            application/xml:
+              schema:
+                type: object
+                properties: {}
         '400':
           description: Missing Required Information
       requestBody:
@@ -125,31 +135,19 @@ components:
       type: object
       description: packing material fee
       x-examples:
-        materials:
-          - materialID: 1
-            materialName: material-A
-            fee: 100
-          - materialID: 2
-            materialName: material-B
-            fee: 200
-          - materialID: 3
-            materialName: material-C
-            fee: 300
-          - materialID: 4
-            materialName: material-D
-            fee: 400
-          - materialID: 5
-            materialName: material-E
-            fee: 500
+        packing material fee:
+          materialID: 1
+          materialName: material-A
+          fee: 100
       properties:
         materialID:
-          type: integer
+          type: number
           description: '1'
         materialName:
           type: string
           description: material-A
         fee:
-          type: integer
+          type: number
           description: '100'
       required:
         - materialID
