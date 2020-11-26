@@ -84,25 +84,43 @@ paths:
                 - materialName
                 - fee
             examples:
-              Create material:
+              Add material-F:
                 value:
                   materialID: 6
                   materialName: material-F
                   fee: 600
         description: Post the necessary fields for the API to create a new user.
       description: Create packing material fee.
-    patch:
+    parameters: []
+    put:
       summary: ''
       operationId: ''
       responses:
         '200':
-          description: |-
-            {
-              "materialID": 6,
-              "materialName": "material-F",
-              "fee": 600
-            }
-      description: update of existing packaging material or fee
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  materialID:
+                    type: number
+                  materialName:
+                    type: string
+                    minLength: 1
+                  fee:
+                    type: number
+                required:
+                  - materialID
+                  - materialName
+                  - fee
+              examples:
+                update of existing packaging material or fee:
+                  value:
+                    materialID: 1
+                    materialName: material-A
+                    fee: 150
       requestBody:
         content:
           application/json:
@@ -122,12 +140,13 @@ paths:
                 - materialName
                 - fee
             examples:
-              Add material-F:
+              update of existing packaging material or fee:
                 value:
-                  materialID: 6
-                  materialName: material-F
-                  fee: 600
-    parameters: []
+                  materialID: 1
+                  materialName: material-A
+                  fee: 150
+        description: update of existing packaging material or fee
+      description: update of existing packaging material or fee
   '/material/{materialID}':
     delete:
       summary: ''
