@@ -128,6 +128,21 @@ paths:
                   materialName: material-F
                   fee: 600
     parameters: []
+  '/material/{materialID}':
+    delete:
+      summary: ''
+      operationId: ''
+      responses:
+        '200':
+          description: OK
+      description: Delete the packing material with the material ID specified in the path
+    parameters:
+      - schema:
+          type: number
+        name: materialID
+        in: path
+        required: true
+        description: Specify materialID
 components:
   schemas:
     Material:
