@@ -62,8 +62,8 @@ paths:
               schema:
                 type: object
                 properties: {}
-        '400':
-          description: Missing Required Information
+        '409':
+          description: Conflict. The request cannot be completed because materialID conflicts with the current resource.
       requestBody:
         content:
           application/json:
@@ -121,6 +121,8 @@ paths:
                     materialID: 1
                     materialName: material-A
                     fee: 150
+        '404':
+          description: Not detected. The resource with materialID was not found.
       requestBody:
         content:
           application/json:
@@ -154,6 +156,8 @@ paths:
       responses:
         '200':
           description: OK
+        '404':
+          description: Not detected. The resource with materialID was not found.
       description: Delete the packing material with the material ID specified in the path
     parameters:
       - schema:
