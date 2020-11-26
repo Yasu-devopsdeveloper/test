@@ -13,37 +13,32 @@ paths:
       tags: []
       responses:
         '200':
-          description: Materials
+          description: Fees for packing materials received in response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Material'
-              examples:
-                Get materials:
-                  value:
-                    - materialID: 1
-                      materialName: material-A
-                      fee: 100
-                    - materialID: 2
-                      materialName: material-B
-                      fee: 200
-                    - materialID: 3
-                      materialName: material-C
-                      fee: 300
-                    - materialID: 4
-                      materialName: material-D
-                      fee: 400
-                    - materialID: 5
-                      materialName: material-E
-                      fee: 500
+                description: ''
+                type: object
+                properties:
+                  materialID:
+                    type: number
+                  materialName:
+                    type: string
+                    minLength: 1
+                  fee:
+                    type: number
+                required:
+                  - materialID
+                  - materialName
+                  - fee
         '400':
           description: Bad Request
-      operationId: get-material-fee
       description: Retrieve the fees of the packing materials.
-  '/material/{materialName}/{fee}/{materialID}':
+      operationId: ''
+  /material:
     post:
       summary: Create New User
-      operationId: post-material-fee
+      operationId: ''
       responses:
         '200':
           description: packing material fee Created
@@ -66,13 +61,13 @@ paths:
               type: object
               properties:
                 materialID:
-                  type: integer
+                  type: number
                   description: material ID
                 materialName:
                   type: string
                   description: material Name
                 fee:
-                  type: integer
+                  type: number
                   description: fee
               required:
                 - materialID
@@ -81,13 +76,14 @@ paths:
             examples:
               Create material:
                 value:
+                  materialID: 6
                   materialName: material-F
                   fee: 600
         description: Post the necessary fields for the API to create a new user.
       description: Create packing material fee.
     patch:
       summary: ''
-      operationId: patch-material
+      operationId: ''
       responses:
         '200':
           description: |-
@@ -96,24 +92,32 @@ paths:
               "materialName": "material-F",
               "fee": 600
             }
-    parameters:
-      - schema:
-          type: integer
-        name: materialID
-        in: path
-        description: material name
-        required: true
-      - schema:
-          type: string
-        name: materialName
-        in: path
-        required: true
-        description: material fee
-      - schema:
-          type: integer
-        name: fee
-        in: path
-        required: true
+      description: update of existing packaging material or fee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                materialID:
+                  type: number
+                materialName:
+                  type: string
+                  minLength: 1
+                fee:
+                  type: number
+              required:
+                - materialID
+                - materialName
+                - fee
+            examples:
+              Add material-F:
+                value:
+                  materialID: 6
+                  materialName: material-F
+                  fee: 600
+    parameters: []
 components:
   schemas:
     Material:
