@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  contact : {}
+  contact: {}
   title: atw-invoice-system-packing-fee
   version: '1.0'
-  description: 'invoice'
+  description: invoice
 servers:
   - url: 'http://localhost:3000'
 paths:
@@ -41,7 +41,7 @@ paths:
         '400':
           description: Bad Request
       description: Retrieve the fees of the packing materials.
-      operationId: '1'
+      operationId: ''
   /material:
     post:
       summary: Create New User
