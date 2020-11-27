@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   contact: {}
-  title: atw-invoice-system-packing-fee
+  title: atw-invoice-system-postage
   version: '1.0'
-  description: invoice
+  description: postage
 servers:
   - url: 'http://localhost:3000'
 paths:
