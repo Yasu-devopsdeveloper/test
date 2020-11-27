@@ -104,9 +104,9 @@ paths:
                   type: string
                   minLength: 1
                 boxID:
-                  type: integer
+                  type: number
                 fee:
-                  type: integer
+                  type: number
               required:
                 - fbaID
                 - boxID
@@ -191,10 +191,10 @@ components:
       properties:
         fbaID:
           type: string
-          description: '1'
+          description: HND1
         boxID:
           type: integer
-          description: material-A
+          description: '40'
         fee:
           type: integer
           description: '100'
@@ -212,3 +212,6 @@ components:
       properties:
         fee:
           type: integer
+          description: '600'
+      required:
+        - fee
