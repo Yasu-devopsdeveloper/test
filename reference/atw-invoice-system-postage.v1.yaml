@@ -34,13 +34,16 @@ paths:
                 type: object
                 properties:
                   fee:
-                    type: integer
+                    type: number
                 required:
                   - fee
               examples:
-                Get packing material fee.:
+                Get postage fee.:
                   value:
                     fee: 100
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/fee'
         '400':
           description: Bad Request
       description: Retrieve the fees of the postage.
@@ -119,7 +122,7 @@ paths:
     parameters: []
     put:
       summary: ''
-      operationId: '3'
+      operationId: ''
       responses:
         '200':
           description: OK
@@ -173,29 +176,39 @@ paths:
                   boxID: 60
                   fee: 800
         description: Update of existing postage
-      description: update of existing packaging material or fee
+      description: Update of existing postage.
 components:
   schemas:
-    Material:
-      title: Material
+    postage:
+      title: postage
       type: object
-      description: packing material fee
+      description: postage
       x-examples:
-        packing material fee:
-          materialID: 1
-          materialName: material-A
-          fee: 100
+        postage:
+          fbaID: NRT1
+          boxID: 40
+          fee: 500
       properties:
-        materialID:
-          type: number
-          description: '1'
-        materialName:
+        fbaID:
           type: string
+          description: '1'
+        boxID:
+          type: integer
           description: material-A
         fee:
-          type: number
+          type: integer
           description: '100'
       required:
-        - materialID
-        - materialName
+        - fbaID
+        - boxID
         - fee
+    fee:
+      title: fee
+      x-examples:
+        fee:
+          fee: 400
+      description: fee
+      type: object
+      properties:
+        fee:
+          type: integer
