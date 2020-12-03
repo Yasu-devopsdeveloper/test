@@ -14,7 +14,7 @@ paths:
         required: true
         description: Id of an existing user.
     get:
-      summary: Get User Info by User ID
+      summary: Get the infromation of shipping fee.
       tags: []
       responses:
         '200':
@@ -36,9 +36,9 @@ paths:
         '404':
           description: User Not Found
       operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
+      description: Retrieve the information of the infromation of shipping fee..
     patch:
-      summary: Update User Information
+      summary: Update the infromation of an existing shipping fee
       operationId: patch-users-userId
       responses:
         '200':
@@ -61,7 +61,7 @@ paths:
           description: User Not Found
         '409':
           description: Email Already Taken
-      description: Update the infromation of an existing user.
+      description: Update the infromation of an existing shipping fee.
       requestBody:
         content:
           application/json:
