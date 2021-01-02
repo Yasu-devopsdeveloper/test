@@ -14,17 +14,11 @@ paths:
       tags: []
       responses:
         '200':
-          description: Delivery fee
+          description: successful operation
           content:
             application/json:
               schema:
-                description: ''
-                type: object
-                properties:
-                  fee:
-                    type: number
-                required:
-                  - fee
+                $ref: '#/components/schemas/company'
               examples:
                 Get postage fee.:
                   value:
@@ -34,6 +28,8 @@ paths:
                 $ref: '#/components/schemas/fee'
         '400':
           description: Bad Request
+        '':
+          headers: {}
       description: Retrieve the fees of the postage.
       operationId: ''
     delete:
@@ -168,15 +164,14 @@ paths:
 components:
   schemas:
     company:
+      type: object
       title: ''
       x-examples: {}
       description: delivery company
-      type: object
       properties:
         id:
           type: integer
           description: '600'
+          format: int64
         companyName:
           type: string
-      required:
-        - id
