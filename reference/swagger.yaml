@@ -31,8 +31,8 @@ paths:
     post:
       tags:
         - pet
-      summary: Add a new pet to the store
-      description: Create delivery company.
+      summary: Add delivery company
+      description: Add delivery company. Only admin can run.
       operationId: ''
       consumes:
         - application/json
@@ -43,37 +43,60 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Pet object that needs to be added to the store
+          description: Delivery company object.
           required: true
           schema:
             $ref: '#/definitions/Company'
       responses:
-        '405':
-          description: Invalid input
+        '201':
+          description: Successful operation
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: Request is invalid or parameters are incorrect
+          schema:
+            type: object
+            properties: {}
+        '409':
+          description: Tried to register an ID that already exists
+          schema:
+            type: object
+            properties: {}
     put:
       tags:
         - pet
-      summary: Update an existing pet
-      description: ''
-      operationId: updatePet
+      summary: Update delivery company
+      description: Update delivery company. Only admin can run.
+      operationId: ''
       consumes:
         - application/json
         - application/xml
       produces:
         - application/xml
         - application/json
-      parameters: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/Company'
+          description: Delivery company object.
       responses:
+        '201':
+          description: Successful operation
+          schema:
+            type: object
+            properties: {}
         '400':
-          description: Invalid ID supplied
+          description: Request is invalid or parameters are incorrect
+          schema:
+            type: object
+            properties: {}
         '404':
-          description: Pet not found
-        '405':
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+          description: Requested resource does not exist
+          schema:
+            type: object
+            properties: {}
     parameters: []
   '/pet/{petId}':
     get:
@@ -188,7 +211,7 @@ paths:
           format: int64
       responses:
         '200':
-          description: successful operation
+          description: Successful operation
           schema:
             $ref: '#/definitions/Company'
         '400':
@@ -198,7 +221,7 @@ paths:
     delete:
       tags:
         - store
-      summary: Delete purchase order by ID
+      summary: Delete delivery company
       description: Delete delivery company. Only admin can run.
       operationId: deleteOrder
       produces:
