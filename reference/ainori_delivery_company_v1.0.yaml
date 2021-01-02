@@ -7,20 +7,8 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  '/postage/{fba-id}/{box-id}':
-    parameters:
-      - schema:
-          type: string
-        name: fba-id
-        in: path
-        required: true
-        description: FBA warehouse ID
-      - schema:
-          type: integer
-        name: box-id
-        in: path
-        required: true
-        description: Box size ID
+  /companies:
+    parameters: []
     get:
       summary: Get postage fee
       tags: []
@@ -181,9 +169,7 @@ components:
   schemas:
     company:
       title: ''
-      x-examples:
-        company:
-          fee: 400
+      x-examples: {}
       description: delivery company
       type: object
       properties:
