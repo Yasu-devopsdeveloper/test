@@ -162,7 +162,7 @@ definitions:
     title: Company
     type: object
     properties:
-      id:
+      companyId:
         type: integer
       companyName:
         type: string
