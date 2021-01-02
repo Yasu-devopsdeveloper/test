@@ -27,13 +27,13 @@ tags:
 schemes:
   - https
 paths:
-  /pet:
+  /companies:
     post:
       tags:
         - pet
       summary: Add a new pet to the store
-      description: ''
-      operationId: addPet
+      description: Create delivery company.
+      operationId: ''
       consumes:
         - application/json
         - application/xml
@@ -46,14 +46,10 @@ paths:
           description: Pet object that needs to be added to the store
           required: true
           schema:
-            $ref: '#/definitions/Pet'
+            $ref: '#/definitions/Company'
       responses:
         '405':
           description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
     put:
       tags:
         - pet
@@ -78,6 +74,7 @@ paths:
         - petstore_auth:
             - 'write:pets'
             - 'read:pets'
+    parameters: []
   '/pet/{petId}':
     get:
       tags:
@@ -175,7 +172,7 @@ paths:
       tags:
         - store
       summary: Get delivery company
-      description: Get delivery company
+      description: Get delivery company.
       operationId: ''
       produces:
         - application/xml
@@ -202,7 +199,7 @@ paths:
       tags:
         - store
       summary: Delete purchase order by ID
-      description: For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors
+      description: Delete delivery company. Only admin can run.
       operationId: deleteOrder
       produces:
         - application/xml
@@ -216,6 +213,11 @@ paths:
           minimum: 1
           format: int64
       responses:
+        '204':
+          description: No Content
+          schema:
+            type: object
+            properties: {}
         '400':
           description: Invalid ID supplied
         '404':

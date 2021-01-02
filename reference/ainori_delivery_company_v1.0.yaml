@@ -7,7 +7,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /companies:
+  /company:
     parameters: []
     get:
       summary: Get postage fee
@@ -18,10 +18,7 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
-                type: array
-                items:
-                  $ref: '#/components/schemas/company'
+                $ref: '#/components/schemas/Company'
               examples:
                 Get postage fee.:
                   value:
@@ -166,15 +163,11 @@ paths:
       description: Update of existing postage.
 components:
   schemas:
-    company:
+    Company:
+      title: Company
       type: object
-      title: ''
-      x-examples: {}
-      description: delivery company
       properties:
         id:
           type: integer
-          description: '600'
-          format: int64
         companyName:
           type: string
