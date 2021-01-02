@@ -179,39 +179,18 @@ paths:
       description: Update of existing postage.
 components:
   schemas:
-    postage:
-      title: postage
-      type: object
-      description: postage
+    company:
+      title: ''
       x-examples:
-        postage:
-          fbaID: NRT1
-          boxID: 40
-          fee: 500
-      properties:
-        fbaID:
-          type: string
-          description: HND1
-        boxID:
-          type: integer
-          description: '40'
-        fee:
-          type: integer
-          description: '100'
-      required:
-        - fbaID
-        - boxID
-        - fee
-    fee:
-      title: fee
-      x-examples:
-        fee:
+        company:
           fee: 400
-      description: fee
+      description: delivery company
       type: object
       properties:
-        fee:
+        id:
           type: integer
           description: '600'
+        companyName:
+          type: string
       required:
-        - fee
+        - id
