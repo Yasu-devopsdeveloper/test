@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  title: ainori_delivery_company_v1.0
+  version: '1.0'
+  description: delivery company
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/postage/{fba-id}/{box-id}':
+    parameters:
+      - schema:
+          type: string
+        name: fba-id
+        in: path
+        required: true
+        description: FBA warehouse ID
+      - schema:
+          type: integer
+        name: box-id
+        in: path
+        required: true
+        description: Box size ID
+    get:
+      summary: Get postage fee
+      tags: []
+      responses:
+        '200':
+          description: Delivery fee
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  fee:
+                    type: number
+                required:
+                  - fee
+              examples:
+                Get postage fee.:
+                  value:
+                    fee: 100
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/fee'
+        '400':
+          description: Bad Request
+      description: Retrieve the fees of the postage.
+      operationId: ''
+    delete:
+      summary: ''
+      operationId: ''
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not detected. The resource with postage was not found.
+      description: Delete the postage specified in the path
+  /postage:
+    post:
+      summary: Create New User
+      operationId: ''
+      responses:
+        '200':
+          description: Created new postage
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  fbaID:
+                    type: string
+                    minLength: 1
+                  boxID:
+                    type: integer
+                  fee:
+                    type: integer
+                required:
+                  - fbaID
+                  - boxID
+                  - fee
+              examples:
+                New postage Fellow:
+                  value:
+                    fbaID: NRT1
+                    boxID: 40
+                    fee: 500
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '409':
+          description: Conflict. The request cannot be completed because combination of fbaID and boxID conflicts with the current resource.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                fbaID:
+                  type: string
+                  minLength: 1
+                boxID:
+                  type: number
+                fee:
+                  type: number
+              required:
+                - fbaID
+                - boxID
+                - fee
+            examples:
+              Add new postage:
+                value:
+                  fbaID: NRT1
+                  boxID: 40
+                  fee: 500
+        description: Post the necessary fields for the API to create a new postage.
+      description: Create postage fee.
+    parameters: []
+    put:
+      summary: ''
+      operationId: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  fbaID:
+                    type: string
+                    minLength: 1
+                  boxID:
+                    type: integer
+                  fee:
+                    type: integer
+                required:
+                  - fbaID
+                  - boxID
+                  - fee
+              examples:
+                update of existing postage:
+                  value:
+                    fbaID: NRT1
+                    boxID: 60
+                    fee: 800
+        '404':
+          description: Not detected. The resource with combination of fbaID and boxID was not found.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                fbaID:
+                  type: string
+                  minLength: 1
+                boxID:
+                  type: integer
+                fee:
+                  type: integer
+              required:
+                - fbaID
+                - boxID
+                - fee
+            examples:
+              Update of existing postage:
+                value:
+                  fbaID: NRT1
+                  boxID: 60
+                  fee: 800
+        description: Update of existing postage
+      description: Update of existing postage.
+components:
+  schemas:
+    postage:
+      title: postage
+      type: object
+      description: postage
+      x-examples:
+        postage:
+          fbaID: NRT1
+          boxID: 40
+          fee: 500
+      properties:
+        fbaID:
+          type: string
+          description: HND1
+        boxID:
+          type: integer
+          description: '40'
+        fee:
+          type: integer
+          description: '100'
+      required:
+        - fbaID
+        - boxID
+        - fee
+    fee:
+      title: fee
+      x-examples:
+        fee:
+          fee: 400
+      description: fee
+      type: object
+      properties:
+        fee:
+          type: integer
+          description: '600'
+      required:
+        - fee
