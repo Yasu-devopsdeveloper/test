@@ -47,7 +47,7 @@ paths:
             $ref: '#/definitions/Company'
       responses:
         '201':
-          description: Successful operation
+          description: Resource add completed successfully
           schema:
             type: object
             properties: {}
@@ -81,7 +81,7 @@ paths:
           description: Delivery company object.
       responses:
         '201':
-          description: Successful operation
+          description: Resource update completed successfully
           schema:
             type: object
             properties: {}
@@ -129,7 +129,7 @@ paths:
         - store
       summary: Delete delivery company
       description: Delete delivery company. Only admin can run.
-      operationId: deleteOrder
+      operationId: ''
       produces:
         - application/xml
         - application/json
@@ -143,7 +143,7 @@ paths:
           format: int64
       responses:
         '204':
-          description: No Content
+          description: Deleted the delivery company
           schema:
             type: object
             properties: {}
