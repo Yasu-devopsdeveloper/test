@@ -18,7 +18,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/company'
+                description: ''
+                type: array
+                items:
+                  $ref: '#/components/schemas/company'
               examples:
                 Get postage fee.:
                   value:
