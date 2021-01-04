@@ -18,7 +18,7 @@ paths:
   /companies:
     post:
       tags:
-      - "company"
+        - company
       summary: Add delivery company
       description: Add delivery company. Only admin can run.
       operationId: ''
@@ -44,7 +44,7 @@ paths:
           description: Tried to register an ID that already exists
     put:
       tags:
-      - "company"
+        - company
       summary: Update delivery company
       description: Update delivery company. Only admin can run.
       operationId: ''
@@ -71,7 +71,7 @@ paths:
   '/company/{companyId}':
     get:
       tags:
-      - "company"
+        - company
       summary: Get delivery company
       description: Get delivery company.
       operationId: ''
@@ -97,7 +97,7 @@ paths:
           description: Order not found
     delete:
       tags:
-      - "company"
+        - company
       summary: Delete delivery company
       description: Delete delivery company. Only admin can run.
       operationId: ''
@@ -119,10 +119,11 @@ paths:
         '404':
           description: Order not found
     parameters:
-      - type: string
+      - type: integer
         name: companyId
         in: path
         required: true
+        description: Company ID
 securityDefinitions: {}
 definitions:
   Company:
