@@ -133,10 +133,6 @@ definitions:
         type: integer
       companyName:
         type: string
-    x-examples:
-      japanpost:
-        companyId: 1
-        companyName: ���{�X��(UGX)
 externalDocs:
   description: Find out more about Swagger
   url: 'http://swagger.io'
