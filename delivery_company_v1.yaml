@@ -122,8 +122,8 @@ paths:
       - type: integer
         name: companyId
         in: path
-        required: true
         description: Company ID
+        required: true
 securityDefinitions: {}
 definitions:
   Company:
